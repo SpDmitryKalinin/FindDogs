@@ -1,4 +1,4 @@
-import {CustomScene, DogArrayItem, dogItem} from "../../interfaces/interfaces";
+import { CustomScene, DogArrayItem, dogItem } from "../../interfaces/interfaces";
 import DefaultScreen from "./DefaultStage";
 
 
@@ -9,7 +9,7 @@ export default class DogManager extends DefaultScreen {
     dogsArray: dogItem[];
     dogsArraySprite: DogArrayItem[];
     finishFunction: () => void;
-    constructor(scene: CustomScene, updateSizesScene:() => void, needUpdatePush: (value: any) => void, sceneWidth: number, sceneHeight: number, isHorizontal: boolean, dogsArray: dogItem[], finishFunction: () => void) {
+    constructor(scene: CustomScene, updateSizesScene: () => void, needUpdatePush: (value: any) => void, sceneWidth: number, sceneHeight: number, isHorizontal: boolean, dogsArray: dogItem[], finishFunction: () => void) {
         super(scene, updateSizesScene, needUpdatePush, sceneWidth, sceneHeight, isHorizontal)
         this.introContainer = false;
         this.dogsArray = dogsArray;
@@ -26,7 +26,7 @@ export default class DogManager extends DefaultScreen {
 
     createAnims() {
         this.scene.anims.create({
-			key: 'circle-anim',
+            key: 'circle-anim',
             frames: this.scene.anims.generateFrameNames('circle', {
                 start: 1,
                 end: 8,
@@ -35,17 +35,17 @@ export default class DogManager extends DefaultScreen {
             }),
             frameRate: 15,
             repeat: 0,
-		})
+        })
     }
 
     createDogItems() {
         const dogSrpitesArray = this.dogsArray.map(dog => {
-            const {x, y, mx, my, scale} = dog;
-            
+            const { x, y, mx, my, scale } = dog;
+
             let dogItem;
-            if(this.isHorizontal) {
+            if (this.isHorizontal) {
                 dogItem = this.scene.add.container(x, y,);
-                
+
             }
             else {
                 dogItem = this.scene.add.container(mx, my);
@@ -70,7 +70,7 @@ export default class DogManager extends DefaultScreen {
                 }
             })
 
-            return {item: dogItem, active: false};
+            return { item: dogItem, active: false };
         })
         return dogSrpitesArray;
 
@@ -78,11 +78,11 @@ export default class DogManager extends DefaultScreen {
 
     addListeners() {
         this.dogsArraySprite.forEach((dogArrayItem => {
-            
+
             const [sprite, circle] = dogArrayItem.item.list;
             sprite.setInteractive();
             sprite.on('pointerdown', () => {
-                if(dogArrayItem.active === false) {
+                if (dogArrayItem.active === false) {
                     //@ts-ignore
                     circle.play('circle-anim');
                     //@ts-ignore
@@ -96,7 +96,7 @@ export default class DogManager extends DefaultScreen {
 
     checkWin() {
         const isWin = this.dogsArraySprite.every((item) => item.active === true);
-        if(isWin) {
+        if (isWin) {
             this.finishFunction();
         }
     }

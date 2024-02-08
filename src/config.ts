@@ -11,14 +11,14 @@ export const config = {
 		width: checkHorizontal() ? 1024 : 600,
 		height: checkHorizontal() ? 768 : 1000,
 		mode: Phaser.Scale.FIT,
-    	autoCenter: Phaser.Scale.CENTER_BOTH
+		autoCenter: Phaser.Scale.CENTER_BOTH
 	},
 	physics: {
-        default: 'arcade',
-        arcade: {
-            gravity: { y: 0, x: 0 },
+		default: 'arcade',
+		arcade: {
+			gravity: { y: 0, x: 0 },
 			fps: 60,
-            debug: false,
-        }
-    },
+			debug: false,
+		}
+	},
 };

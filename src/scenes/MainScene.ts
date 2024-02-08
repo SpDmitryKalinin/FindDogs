@@ -29,8 +29,8 @@ export default class MainScene extends Phaser.Scene {
         this.buttonPlay = false;
         this.needUpdateItems = [];
     }
-    
-	preload() {
+
+    preload() {
         //loading screen
         loading(this);
 
@@ -51,12 +51,12 @@ export default class MainScene extends Phaser.Scene {
         //create Intro
         const instanceIntro = new Intro(this, this.updateSizesScene, this.needUpdatePush.bind(this), this.sceneWidth, this.sceneHeight, this.isHorizontal);
         //create Outro
-        const instanceOutro= new Outro(this, this.updateSizesScene, this.needUpdatePush.bind(this), this.sceneWidth, this.sceneHeight, this.isHorizontal, this.startButtonAnim.bind(this));
+        const instanceOutro = new Outro(this, this.updateSizesScene, this.needUpdatePush.bind(this), this.sceneWidth, this.sceneHeight, this.isHorizontal, this.startButtonAnim.bind(this));
         //on Outro Screen
         const finishFunction = () => instanceOutro.onScreen();
         //create Dogs
         const instanceDogManager = new DogManager(this, this.updateSizesScene, this.needUpdatePush.bind(this), this.sceneWidth, this.sceneHeight, this.isHorizontal, dogs, finishFunction);
-        
+
     };
 
     //Method for updating coordinates, dimensions and components when the screen is resized
@@ -66,7 +66,7 @@ export default class MainScene extends Phaser.Scene {
         this.isHorizontal = this.sceneWidth > this.sceneHeight;
 
         this.needUpdateItems.forEach((object => {
-            if(this.isHorizontal) {
+            if (this.isHorizontal) {
                 object.desktopUpdate(object.item);
             }
             else {
@@ -88,22 +88,22 @@ export default class MainScene extends Phaser.Scene {
     createBackground() {
         const background = this.add.image(this.isHorizontal ? this.sceneWidth / 2 : this.sceneWidth / 4, this.sceneHeight / 2, 'background');
         //Picture proportions should not change with mobile resolution
-        const aspectRation = 1024/768;
+        const aspectRation = 1024 / 768;
 
-        background.setDisplaySize(this.sceneHeight * aspectRation, this.sceneHeight )
+        background.setDisplaySize(this.sceneHeight * aspectRation, this.sceneHeight)
         background.setOrigin(0.5, 0.5);
         // @ts-ignore
         this.needUpdatePush({
             item: background,
             mobileUpdate: (item) => {
                 item.setPosition(this.sceneWidth / 4, this.sceneHeight / 2);
-                const aspectRation = 1024/768;
-                background.setDisplaySize(this.sceneHeight * aspectRation, this.sceneHeight )
+                const aspectRation = 1024 / 768;
+                background.setDisplaySize(this.sceneHeight * aspectRation, this.sceneHeight)
             },
             desktopUpdate: (item) => {
                 item.setPosition(this.sceneWidth / 2, this.sceneHeight / 2);
-                const aspectRation = 1024/768;
-                background.setDisplaySize(this.sceneHeight * aspectRation, this.sceneHeight )
+                const aspectRation = 1024 / 768;
+                background.setDisplaySize(this.sceneHeight * aspectRation, this.sceneHeight)
             }
         })
 
@@ -115,12 +115,12 @@ export default class MainScene extends Phaser.Scene {
 
         const text = this.add.text(0, 0, 'Play Now', { fontFamily: 'Arial', fontSize: '24px', color: '#ffffff' });
         text.setOrigin(0.5, 0.5);
-        
-        this.buttonPlay = this.add.container(this.sceneWidth / 2, this.sceneHeight  - 100, [button, text]);
-        if(!this.isHorizontal) {
+
+        this.buttonPlay = this.add.container(this.sceneWidth / 2, this.sceneHeight - 100, [button, text]);
+        if (!this.isHorizontal) {
             this.buttonPlay.setScale(1.2)
         }
-        
+
         text.setPosition(this.buttonPlay.width / 2, this.buttonPlay.height / 2);
 
         // @ts-ignore
@@ -128,12 +128,12 @@ export default class MainScene extends Phaser.Scene {
             item: this.buttonPlay,
             desktopUpdate: (item) => {
                 item.x = this.sceneWidth / 2;
-                item.y = this.sceneHeight  - 50
-                item.setPosition(this.sceneWidth / 2, this.sceneHeight  - 100)
+                item.y = this.sceneHeight - 50
+                item.setPosition(this.sceneWidth / 2, this.sceneHeight - 100)
                 item.setScale(1);
             },
             mobileUpdate: (item) => {
-                item.setPosition(this.sceneWidth / 2, this.sceneHeight  - 100)
+                item.setPosition(this.sceneWidth / 2, this.sceneHeight - 100)
                 item.setScale(1.2)
             }
         })
@@ -147,17 +147,17 @@ export default class MainScene extends Phaser.Scene {
     }
 
     startButtonAnim() {
-        if(typeof this.buttonPlay === 'boolean') {
+        if (typeof this.buttonPlay === 'boolean') {
             return
         }
         this.tweens.add({
             targets: this.buttonPlay,
             scaleX: this.buttonPlay.scaleX * 1.1,
             scaleY: this.buttonPlay.scaleY * 1.1,
-            duration: 1000, 
-            ease: 'Linear', 
-            yoyo: true, 
-            repeat: -1 
+            duration: 1000,
+            ease: 'Linear',
+            yoyo: true,
+            repeat: -1
         });
     }
 }

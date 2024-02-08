@@ -15,7 +15,7 @@ export default function loading(scene: Phaser.Scene) {
     const assetText = createAssetText();
     const percentText = createPercentText();
 
-    const assets = [overlay,progressBar, progressBox, loadingText, percentText, assetText];
+    const assets = [overlay, progressBar, progressBox, loadingText, percentText, assetText];
     assets.forEach((asset, i) => {
         asset.depth = 1000000;
     });
@@ -30,18 +30,18 @@ export default function loading(scene: Phaser.Scene) {
             duration: 800,
             delay: 0,
             alpha: {
-              getStart: () => 1,
-              getEnd: () => 0
+                getStart: () => 1,
+                getEnd: () => 0
             },
             onComplete: () => {
-              assets.forEach(asset => asset.destroy());
+                assets.forEach(asset => asset.destroy());
             }
         });
     });
 
     function createOverlay() {
         const overlay = scene.add.graphics();
-        
+
         overlay.fillStyle(0x000000);
         overlay.fillRect(0, 0, sceneWidth, sceneHeight);
         return overlay;
@@ -96,7 +96,7 @@ export default function loading(scene: Phaser.Scene) {
         const y = sceneHeight / 2 + 25;
         const height = 50;
         progressBox.fillStyle(0x222222, 0.5);
-        progressBox.fillRect(x, y, length , height);
+        progressBox.fillRect(x, y, length, height);
         return progressBox;
     }
 
@@ -105,7 +105,7 @@ export default function loading(scene: Phaser.Scene) {
         const length = (sceneWidth / 2) - 4;
         const x = sceneWidth / 2 - length / 2 + 2;
         const y = (sceneHeight / 2 + 25) + 5;
-        
+
         const height = 50 - 10;
         scene.load.on('progress', (value: number) => {
             percentText.setText(`${(value * 100).toFixed(0)}%`);

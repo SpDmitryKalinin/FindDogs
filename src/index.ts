@@ -1,19 +1,16 @@
 import * as Phaser from 'phaser';
-import {config} from './config';
+import { config } from './config';
 import MainScene from './scenes/MainScene';
 import checkHorizontal from './utils/checkHorizontal';
-
-
-const isMobile = navigator.userAgent.includes("Mobile");
 
 const game = new Phaser.Game(config);
 
 game.scene.add('MainScene', MainScene);
 game.scene.start('MainScene', MainScene);
 
-
+//Adaptive game initialization
 window.addEventListener('resize', function () {
-    if(checkHorizontal()) {
+    if (checkHorizontal()) {
         game.scale.setGameSize(1024, 768)
         game.scale.refresh();
     }

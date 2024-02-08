@@ -146,7 +146,7 @@ export default class Outro extends DefaultScreen {
                 mobileUpdate: (item: any) => {
                     item.x = this.scene.sceneWidth / 2;
                     item.y = 600;
-                    char.setScale(-0.6, -0.6);
+                    char.setScale(-0.6, 0.6);
                 }
             }
         )

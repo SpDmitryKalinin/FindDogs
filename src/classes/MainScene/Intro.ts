@@ -1,4 +1,4 @@
-import {CustomScene} from "../../interfaces/interfaces";
+import { CustomScene } from "../../interfaces/interfaces";
 import DefaultScreen from "./DefaultStage";
 
 export default class Intro extends DefaultScreen {
@@ -25,7 +25,7 @@ export default class Intro extends DefaultScreen {
         const dogSprite = this.createDogSprite(textString.width / 2);
 
         containerAnim.add([textString, textStringSecond, dogSprite]);
-        if(typeof introContainer !== 'boolean') {
+        if (typeof introContainer !== 'boolean') {
             introContainer.add([overlay, containerAnim]);
             this.animationIntro(introContainer)
         }
@@ -33,10 +33,10 @@ export default class Intro extends DefaultScreen {
 
     createIntroContainer() {
         this.introContainer = this.scene.add.container(0, 0);
-        if(typeof this.introContainer !== 'boolean')
-        this.introContainer.setDepth(1)
+        if (typeof this.introContainer !== 'boolean')
+            this.introContainer.setDepth(1)
         //container for scale animation
-        
+
 
         this.needUpdatePush(
             {

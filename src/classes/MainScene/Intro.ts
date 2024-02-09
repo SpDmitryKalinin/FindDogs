@@ -33,12 +33,12 @@ export default class Intro extends DefaultScreen {
 
     createIntroContainer() {
         this.introContainer = this.scene.add.container(0, 0);
-        this.introContainer.setInteractive(false);
-        if (typeof this.introContainer !== 'boolean')
+        this.introContainer.disableInteractive();
+
+        if (typeof this.introContainer !== 'boolean') {
             this.introContainer.setDepth(1)
-        //container for scale animation
-
-
+        }
+        
         this.needUpdatePush(
             {
                 item: this.introContainer,
@@ -52,7 +52,6 @@ export default class Intro extends DefaultScreen {
                 }
             }
         )
-
         return this.introContainer;
     }
 
@@ -115,6 +114,7 @@ export default class Intro extends DefaultScreen {
                 color: '#ffffff',
             }
         });
+
         textString.setOrigin(0.5, 0.5);
         return textString;
     }
@@ -131,12 +131,12 @@ export default class Intro extends DefaultScreen {
         });
 
         textStringSecond.setOrigin(0.5, 0.5);
-
         return textStringSecond;
     }
 
     createDogSprite(x: number) {
         const dogSprite = this.scene.add.sprite(x, -50, 'dog');
+        
         dogSprite.setOrigin(0.5, 0.5)
         dogSprite.setScale(-0.8, 0.8)
         return dogSprite;

@@ -80,7 +80,7 @@ export default class DogManager extends DefaultScreen {
         this.dogsArraySprite.forEach((dogArrayItem => {
 
             const [sprite, circle] = dogArrayItem.item.list;
-            sprite.setInteractive();
+            sprite.setInteractive({ cursor: 'pointer' });
             sprite.on('pointerdown', () => {
                 if (dogArrayItem.active === false) {
                     //@ts-ignore

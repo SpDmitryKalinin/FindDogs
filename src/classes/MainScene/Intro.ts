@@ -33,6 +33,7 @@ export default class Intro extends DefaultScreen {
 
     createIntroContainer() {
         this.introContainer = this.scene.add.container(0, 0);
+        this.introContainer.setInteractive(false);
         if (typeof this.introContainer !== 'boolean')
             this.introContainer.setDepth(1)
         //container for scale animation
@@ -185,11 +186,19 @@ export default class Intro extends DefaultScreen {
                     duration: 1000,
                     ease: 'Linear',
                     delay: 0,
+                    onComplete: () => {
+                        if(typeof this.introContainer !== 'boolean') {
+                            this.introContainer.removeAll(true);
+                            this.introContainer.list.length = 0;
+                            this.introContainer.destroy();
+                        }
+                    }
                 });
 
             },
             callbackScope: this,
             loop: false,
+            
         });
     }
 }

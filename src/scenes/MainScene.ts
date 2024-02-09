@@ -133,7 +133,7 @@ export default class MainScene extends Phaser.Scene {
 
         this.buttonPlay.setDepth(2);
         this.buttonPlay.setSize(281, 113)
-        this.buttonPlay.setInteractive();
+        this.buttonPlay.setInteractive({ cursor: 'pointer' });
         this.buttonPlay.on('pointerdown', () => {
             window.location.href = 'https://www.g5.com/ru';
         })

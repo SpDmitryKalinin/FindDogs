@@ -7,12 +7,7 @@ import Intro from "../classes/MainScene/Intro";
 import DogManager from "../classes/MainScene/DogManager";
 import { dogs } from "../utils/vars";
 import Outro from "../classes/MainScene/Outro";
-
-interface UpdateObjectInterface extends Phaser.Scene {
-    item: any;
-    desktopUpdate: (item: any) => void;
-    mobileUpdate: (item: any) => void;
-}
+import { UpdateObjectInterface } from "../interfaces/interfaces";
 
 
 export default class MainScene extends Phaser.Scene {
@@ -92,7 +87,6 @@ export default class MainScene extends Phaser.Scene {
 
         background.setDisplaySize(this.sceneHeight * aspectRation, this.sceneHeight)
         background.setOrigin(0.5, 0.5);
-        // @ts-ignore
         this.needUpdatePush({
             item: background,
             mobileUpdate: (item) => {
@@ -123,7 +117,6 @@ export default class MainScene extends Phaser.Scene {
 
         text.setPosition(this.buttonPlay.width / 2, this.buttonPlay.height / 2);
 
-        // @ts-ignore
         this.needUpdatePush({
             item: this.buttonPlay,
             desktopUpdate: (item) => {

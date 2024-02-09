@@ -15,3 +15,10 @@ export interface DogArrayItem {
     item: Phaser.GameObjects.Container;
     active: boolean;
 }
+
+
+export interface UpdateObjectInterface {
+    item: any;
+    desktopUpdate: (item: any) => void;
+    mobileUpdate: (item: any) => void;
+}
